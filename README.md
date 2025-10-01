@@ -111,6 +111,10 @@ make help
 
 ## 📝 Markdown 版本
 
+### 🌐 線上履歷
+- **GitHub Pages**: [https://120061203.github.io/cv/](https://120061203.github.io/cv/)
+- **最新 Markdown**: [https://120061203.github.io/cv/resume.md](https://120061203.github.io/cv/resume.md)
+
 ### 基本使用
 ```bash
 cd markdown
@@ -123,6 +127,7 @@ make clean            # 清理生成的 Markdown 文件
 - **跨平台**：可在任何支援 Markdown 的平台上查看
 - **版本控制**：與 Git 完美整合
 - **協作友好**：支援多人協作編輯
+- **線上展示**：透過 GitHub Pages 自動部署
 
 ## ✏️ 自訂履歷內容
 
