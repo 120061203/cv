@@ -74,26 +74,32 @@ cv/
 
 ## 🚀 使用方法
 
-### 📝 基本編譯（推薦）
+### 🎯 統一編譯（推薦）
 ```bash
-make
+make                # 同時生成 PDF 和 Markdown 履歷
+make pdf           # 只生成 PDF 履歷
+make md            # 只生成 Markdown 履歷
 ```
-**功能**：編譯履歷並生成帶時間戳的 PDF 文件
-**輸出**：`output/songlinchen_resume_YYYYMMDD_HHMMSS.pdf`
+**功能**：一個命令同時生成兩種格式的履歷
+**輸出**：
+- PDF：`output/songlinchen_resume_YYYYMMDD_HHMMSS.pdf`
+- Markdown：`markdown/songlinchen_resume_YYYYMMDD_HHMMSS.md`
 **特點**：自動清理輔助文件，保持目錄整潔
+
+### ⚡ 快速編譯
+```bash
+make quick          # 快速編譯（不清理輔助文件）
+make quick-pdf     # 快速編譯 PDF
+make quick-md      # 快速生成 Markdown
+```
+**功能**：快速編譯，不進行清理
+**適用**：開發過程中的快速測試
 
 ### 🧹 清理功能
 ```bash
 make clean          # 清理臨時文件
-make distclean     # 完全清理（包括所有PDF）
+make distclean     # 完全清理（包括所有生成的文件）
 ```
-
-### ⚡ 快速編譯
-```bash
-make quick
-```
-**功能**：快速編譯，不進行清理
-**適用**：開發過程中的快速測試
 
 ### 👀 監視模式
 ```bash
@@ -102,6 +108,12 @@ make watch
 **功能**：監視文件變化並自動重新編譯
 **需求**：需要安裝 `latexmk`
 **適用**：持續編輯時的即時預覽
+
+### 📊 專案狀態
+```bash
+make status         # 顯示專案狀態和統計
+make check-deps     # 檢查編譯依賴
+```
 
 ### 📋 查看幫助
 ```bash
@@ -115,7 +127,13 @@ make help
 - **GitHub Pages**: [https://120061203.github.io/cv/](https://120061203.github.io/cv/)
 - **最新 Markdown**: [https://120061203.github.io/cv/resume.md](https://120061203.github.io/cv/resume.md)
 
-### 基本使用
+### 統一編譯（推薦）
+```bash
+make                   # 同時生成 PDF 和 Markdown
+make md               # 只生成 Markdown 履歷
+```
+
+### 獨立編譯（舊方式）
 ```bash
 cd markdown
 make                    # 生成帶時間戳的 Markdown 文件
@@ -128,6 +146,7 @@ make clean            # 清理生成的 Markdown 文件
 - **版本控制**：與 Git 完美整合
 - **協作友好**：支援多人協作編輯
 - **線上展示**：透過 GitHub Pages 自動部署
+- **統一管理**：與 LaTeX 版本使用相同的編譯流程
 
 ## ✏️ 自訂履歷內容
 
