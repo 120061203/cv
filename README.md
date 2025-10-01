@@ -5,7 +5,7 @@
 ## 🌐 線上履歷
 
 - **GitHub Pages**: [https://120061203.github.io/cv/](https://120061203.github.io/cv/)
-- **最新 Markdown**: [https://120061203.github.io/cv/resume.md](https://120061203.github.io/cv/resume.md)
+- **最新 PDF**: [output/songlinchen_resume_20251001_135642.pdf](output/songlinchen_resume_20251001_135642.pdf)
 
 ## ✨ 專案特色
 
