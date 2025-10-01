@@ -1,37 +1,110 @@
-# Tab Library
+# Song Lin Chen
 
-## 可用文件
-- [履歷展示](https://120061203.github.io/cv/)
-- [履歷 Markdown](https://120061203.github.io/cv/resume.md)
-- [GitHub 專案](https://github.com/120061203/cv)
+**Network Learning Technology Graduate Student**  
+📍 Taoyuan, Taiwan  
+📧 ccssll120061203@gmail.com  
+📱 (+886) 905-359-300  
+🔗 [LinkedIn](https://www.linkedin.com/in/songlinchen/)  
 
-> 若要檢視完整原始碼，請切換至 GitHub 的 `main` 分支。
+---
 
-## 專案說明
+## Education
 
-這是一個專業的履歷專案，支援多種格式輸出：
+### National Central University
+**M.S. in Network Learning Technology** | *Sep 2023 – Present*
+- **GPA:** 3.9/4.3
+- **Skills:** Backend development (Python Django, Flask), Cloud systems (AWS, GCP, MQTT, ESP32), and UI/UX Frontend design (React, Figma, Adobe XD)
+- **Competitions:** Participated in 4 competitions—AWS Hackathon, two editions of Google Solution Challenge, and Taipei CityPass Hackathon—to deliver real‑world technical solutions
 
-### 📄 支援格式
-- **LaTeX PDF**: 專業排版的高品質履歷
-- **Markdown**: 輕量級、易於編輯的版本
-- **GitHub Pages**: 線上展示頁面
+### National University of Kaohsiung
+**B.S. in Computer Science Information** | *Sep 2018 – 2022*
+- **GPA:** 3.7/4.3
+- **Achievements:** 4 competitions, 5 awards: Demonstrated consistent excellence in technology and innovation challenges
+- **Course Excellence:** Achieved A+ level in Internet Of Things and Web Design course
 
-### 🚀 特色功能
-- 統一 Makefile 編譯系統
-- 自動時間戳記命名
-- GitHub Pages 自動部署
-- 響應式設計
+---
 
-### 📁 專案結構
-```
-cv/
-├── src/                    # LaTeX 源文件
-├── output/                 # PDF 輸出
-├── markdown/              # Markdown 版本
-└── gh-pages/              # GitHub Pages 部署
-```
+## Experience
 
-### 🔗 相關連結
-- **線上履歷**: https://120061203.github.io/cv/
-- **GitHub 專案**: https://github.com/120061203/cv
-- **最新 Markdown**: https://120061203.github.io/cv/resume.md
+### Network Engineer
+**Media and Education Qualitative Analysis Lab, National Central University** | *Sep 2024 – Jun 2025*
+- Managed cybersecurity and network infrastructure for 10+ servers and devices
+
+### Organizer and Tech. Team
+**Google Developer Groups on Campus National Central University** | *Sep 2023 – Jun 2025*
+- Served as technical instructor for 5+ hands-on workshops, guiding students in git workshop, Google cloud projects, LLM comparator with Vertex AI Workshop, and IoT workshop
+
+### IoT & Maker STEM Education Instructor
+**Teaching and Learning Center, National Central University** | *Jan 2024 – Jun 2025*
+- Delivered over 10+ lessons on Arduino, computational thinking, Python, and IoT
+- Guided students through projects like industrial data monitoring and smart home control
+
+---
+
+## Projects with Awards
+
+### Air Pocket APP
+**Industry Award and Honorable Mention, Graduation Project Competition** | *2021*
+- Built an IoT solution for real‑time air quality monitoring and visualization
+- Developed backend API with Python Flask, using the MQTT protocol for lightweight data communication
+- 🔗 [GitHub Repository](https://github.com/120061203/AirPocket0310.git)
+
+### Smart Watch
+**Honorable Mention, Intelligent Application Competition** | *2022*
+- Engineered a wearable IoT device for real‑time physiological monitoring, capturing metrics such as heart rate and body temperature
+- Implemented Python Django backend and integrated a Line Bot to deliver instant health alert notifications
+
+### Solar Smart Blinds
+**Top 20, Taiwan Energy Technology Innovation Competition** | *2020*
+- Developed a solar-optimized smart window blind system that maximizes natural lighting efficiency
+- Developed control system with Arduino NodeMCU, integrating brightness sensor and motor modules for real-time solar tracking and automated adjustment
+
+### GoGoShop Ordering System
+**Ranked 1st, Website Design class projects** | *2020*
+- Developed a lightweight online food ordering platform using PHP and MySQL
+- Designed a responsive RWD front-end, supporting product management and order handling
+- 🔗 [GitHub Repository](https://github.com/120061203/gogoshop)
+
+---
+
+## Technical Skills
+
+### Programming Languages
+- Python, JavaScript, Java, PHP
+
+### Frameworks & Libraries
+- Django, Flask, React, Node.js
+
+### Databases
+- MySQL, PostgreSQL, MongoDB
+
+### Cloud & IoT
+- AWS, GCP, MQTT, ESP32, Arduino
+
+### Tools & Technologies
+- Git, Docker, Figma, Adobe XD
+- LaTeX, Markdown
+
+### Languages
+- **Chinese:** Native
+- **English:** Fluent
+- **Japanese:** Basic
+
+---
+
+## Certifications & Awards
+
+- **Google Cybersecurity Certificate**
+- **Microsoft AZ-900**
+- **4 competitions, 5 awards** in technology and innovation challenges
+- **A+ level** in Internet Of Things and Web Design course
+
+---
+
+## Summary
+
+Master's student in Network Learning Technology with strong background in IoT, AI, and cloud systems. Participated in 5 major competitions, delivered innovative solutions in generative AI, IoT robotics, and smart cities. Skilled in backend development (Python Django, Flask), IoT systems (MQTT, ESP32), and UI/UX design (Adobe XD).
+
+---
+
+*Last updated: October 1, 2025*
