@@ -1,0 +1,402 @@
+\documentclass[10pt, letterpaper]{article}
+
+% \usepackage{fontspec} 
+% \setmainfont{Roboto}
+
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=2 cm, % seperation between body and page edge from the top
+    bottom=2 cm, % seperation between body and page edge from the bottom
+    left=2 cm, % seperation between body and page edge from the left
+    right=2 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Song Lin Chen's CV},
+    pdfauthor={Song Lin Chen},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column seperation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\makeatother
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+        
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
+
+\begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
+
+    \begin{header}
+        \textbf{\fontsize{24 pt}{24 pt}\selectfont Song Lin Chen}
+
+
+        \normalsize
+        \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}Taoyuan, Taiwan}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{mailto:ccssll120061203@gmail.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}ccssll120061203@gmail.com}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{tel:(+886) 905-359-300}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}(+886) 905-359-300}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://www.linkedin.com/in/songlinchen/
+}{\color{black}{\footnotesize\faLinkedin}\hspace*{0.13cm}linkedin.com/in/songlinchen}}%
+        \kern 0.25 cm%
+
+    \end{header}
+
+    \vspace{0.3 cm - 0.3 cm}
+
+    \section{Education}
+
+
+
+        
+        \begin{twocolentry}[]{
+            
+    
+        \textit{Sep 2023 – Present}}
+            \textbf{National Central University}
+
+            \textit{M.S. in Network Learning Technology}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                    \item GPA: 3.9/4.3
+                    \begin{itemize}
+
+                        \item Skilled in Backend development (Python Django, Flask), Cloud systems (AWS, GCP,MQTT, ESP32), and UI/UX Frontend design (React, Figma, Adobe XD).
+
+                        \item Participated in 4 competitions—AWS Hackathon, two editions of Google Solution Challenge, and Taipei CityPass Hackathon—to deliver real‑world technical solutions.
+                        \end{itemize}
+              
+            \end{highlights}
+        \end{onecolentry}
+
+
+
+        \begin{twocolentry}[]{
+            
+            
+        \textit{Sep 2018 – 2022}}
+            \textbf{National University of Kaohsiung}
+
+            \textit{B.S. in Computer Science Information}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                    \item GPA: 3.7/4.3
+                    \begin{itemize}
+                        \item 4 competitions, 5 awards: Demonstrated consistent excellence in technology and innovation challenges. \item Achieved A+ level in Internet Of Things and Web Design course. 
+                     \end{itemize}
+              
+            \end{highlights}
+        \end{onecolentry}
+
+        
+
+
+        
+
+
+
+    
+    \section{Experience}
+
+
+
+        
+        \begin{twocolentry}[]{
+        
+            
+        \textit{Sep 2024 – Jun 2025}}
+            \textbf{Network Engineer}
+            
+            \textit{Media and Education Qualitative Analysis Lab, National Central University}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Managed cybersecurity and network infrastructure for 10+ servers and devices.
+            \end{highlights}
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+        
+        \begin{twocolentry}{ 
+            
+        \textit{Sep 2023 – Jun 2025}}
+            \textbf{Organizer and Tech. Team}
+            
+            \textit{Google Developer Groups on Campus National Central University}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Served as technical instructor for 5+ hands-on workshops, guiding students in git workshop, Google cloud projects, LLM comparator with Vertex AI Workshop, and IoT workshop.
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{ 
+            
+        \textit{Jan 2024 – Jun 2025}}
+            \textbf{IoT \& Maker STEM Education Instructor}
+            
+            \textit{Teaching and Learning Center, National Central University}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Delivered over 10+ lessons on Arduino, computational thinking, Python, and IoT. Guided students through projects like industrial data monitoring and smart home control.
+            \end{highlights}
+        \end{onecolentry}
+
+
+        \vspace{0.2 cm}
+
+      
+
+
+        
+        
+    \section{Projects with Awards}
+        
+        
+
+        \begin{twocolentry}{
+        \textit{2021}}
+            \href{https://github.com/120061203/AirPocket0310.git}{\textbf{Air Pocket APP}}
+            \textit{Industry Award and Honorable Mention, Graduation Project Competition}
+        \end{twocolentry}
+        
+        \vspace{0.10 cm}
+        
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Built an IoT solution for real‑time air quality monitoring and visualization.
+                \item Developed backend API with Python Flask, using the MQTT protocol for lightweight data communication.
+
+            \end{highlights}
+        \end{onecolentry}
+
+        
+        
+        
+
+        \vspace{0.2 cm}
+        
+        \begin{twocolentry}{
+            
+        \textit{2022}}
+            \textbf{Smart Watch}
+            \textit{Honorable Mention, Intelligent Application Competition}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Engineered a wearable IoT device for real‑time physiological monitoring, capturing metrics such as heart rate and body temperature.
+                \item Implemented Python Django backend and integrated a Line Bot to deliver instant health alert notifications.
+            \end{highlights}
+        \end{onecolentry}
+
+        \vspace{0.2 cm}
+
+        \begin{twocolentry}{
+        \textit{2020}}
+            \textbf{Solar Smart Blinds}
+            \textit{Top 20, Taiwan Energy Technology Innovation Competition}
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+
+        \begin{onecolentry}
+            \begin{highlights}
+                \item Developed a solar-optimized smart window blind system that maximizes natural lighting efficiency.
+                \item Developed control system with Arduino NodeMCU, integrating brightness sensor and motor modules for real-time solar tracking and automated adjustment.
+            \end{highlights}
+        \end{onecolentry}
+
+        \begin{twocolentry}{
+        \textit{2020}}
+            \href{https://github.com/120061203/gogoshop}{\textbf{GoGoShop Ordering System}}
+            \textit{Ranked 1st, Website Design class projects}
+            
+        \end{twocolentry}
+
+        \vspace{0.10 cm}
+        \begin{onecolentry}
+            \begin{highlights}
+                
+                \item Developed a lightweight online food ordering platform using PHP and MySQL.
+                \item Designed a responsive RWD front-end, supporting product management and order handling.
+            \end{highlights}
+        \end{onecolentry}
+
+    % \section{Awards}
+
+    %         \textbf {Innovation Contest of Future Network Applications} 
+    %         \textit {First Place 2024}
+            
+    %         \textbf {InnoServe} 
+    %         \textit {Finalist 2023}
+
+            
+    
+    %         \textbf {AIS3 MyFirstCTF} 
+    %         \textit {Honorable Mention 2024}
+    
+    % \section{Certificates}
+    %         \textbf {Google Cybersecurity} 
+            
+    %         \textbf {Microsoft AZ-900}
+
+    
+    % \section{Summary}
+
+    % \begin{onecolentry}
+    %         \begin{highlights}
+    %             \item Master's student in Network Learning Technology, strong background in IoT, AI, and cloud systems.
+    %             \item Participated in 5 major competitions, delivered innovative solutions in generative AI, IoT robotics, and smart cities. 
+    %             \item Skilled in backend development (Python Django, Flask), IoT systems (MQTT, ESP32), and UI/UX design (Adobe XD).
+    %         \end{highlights}
+    %     \end{onecolentry}
+      
+   
+
+
+    
+
+\end{document}
