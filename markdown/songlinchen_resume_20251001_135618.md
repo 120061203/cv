@@ -67,4 +67,44 @@
 
 ---
 
+## Technical Skills
+
+### Programming Languages
+- Python, JavaScript, Java, PHP
+
+### Frameworks & Libraries
+- Django, Flask, React, Node.js
+
+### Databases
+- MySQL, PostgreSQL, MongoDB
+
+### Cloud & IoT
+- AWS, GCP, MQTT, ESP32, Arduino
+
+### Tools & Technologies
+- Git, Docker, Figma, Adobe XD
+- LaTeX, Markdown
+
+### Languages
+- **Chinese:** Native
+- **English:** Fluent
+- **Japanese:** Basic
+
+---
+
+## Certifications & Awards
+
+- **Google Cybersecurity Certificate**
+- **Microsoft AZ-900**
+- **4 competitions, 5 awards** in technology and innovation challenges
+- **A+ level** in Internet Of Things and Web Design course
+
+---
+
+## Summary
+
+Master's student in Network Learning Technology with strong background in IoT, AI, and cloud systems. Participated in 5 major competitions, delivered innovative solutions in generative AI, IoT robotics, and smart cities. Skilled in backend development (Python Django, Flask), IoT systems (MQTT, ESP32), and UI/UX design (Adobe XD).
+
+---
+
 *Last updated: October 1, 2025*
