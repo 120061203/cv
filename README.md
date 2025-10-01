@@ -2,6 +2,11 @@
 
 這是一個專業的 LaTeX 履歷專案，專為 Song Lin Chen 設計，提供現代化、美觀且易於維護的履歷模板。
 
+## 🌐 線上履歷
+
+- **GitHub Pages**: [https://120061203.github.io/cv/](https://120061203.github.io/cv/)
+- **最新 Markdown**: [https://120061203.github.io/cv/resume.md](https://120061203.github.io/cv/resume.md)
+
 ## ✨ 專案特色
 
 - 🎨 **現代化設計**：使用專業的 LaTeX 排版，支援中英文混合
@@ -125,7 +130,7 @@ make help
 
 ### 🌐 線上履歷
 - **GitHub Pages**: [https://120061203.github.io/cv/](https://120061203.github.io/cv/)
-- **最新 Markdown**: [https://120061203.github.io/cv/resume.md](https://120061203.github.io/cv/resume.md)
+- **最新 Markdown**: [https://120061203.github.io/cv/resume.md]()
 
 ### 統一編譯（推薦）
 ```bash
