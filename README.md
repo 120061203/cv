@@ -23,22 +23,35 @@
 
 ```
 cv/
-├── src/                           # 📝 源文件目錄
+├── src/                           # 📝 LaTeX源文件目錄
 │   └── resume.tex                 # 主要的LaTeX履歷文件
-├── output/                        # 📄 輸出文件目錄
+├── output/                        # 📄 LaTeX輸出文件目錄
 │   ├── songlinchen_resume_20251001_124311.pdf
 │   ├── songlinchen_resume_20251001_124205.pdf
 │   └── ...                        # 其他編譯生成的PDF文件
-├── Makefile                       # 🔧 編譯腳本
+├── markdown/                      # 📝 Markdown版本目錄
+│   ├── resume.md                  # Markdown履歷文件
+│   ├── Makefile                   # Markdown編譯腳本
+│   ├── README.md                  # Markdown說明文件
+│   └── songlinchen_resume_*.md    # 生成的Markdown文件
+├── Makefile                       # 🔧 LaTeX編譯腳本
 └── README.md                      # 📖 專案說明文件
 ```
 
 ### 📋 文件說明
 
+#### LaTeX 版本
 - **`src/resume.tex`**：主要的 LaTeX 源文件，包含完整的履歷內容
 - **`output/`**：存放所有編譯生成的 PDF 文件，文件名格式為 `songlinchen_resume_YYYYMMDD_HHMMSS.pdf`
-- **`Makefile`**：自動化編譯腳本，支援多種編譯選項
-- **`README.md`**：專案說明文件
+- **`Makefile`**：LaTeX 自動化編譯腳本，支援多種編譯選項
+
+#### Markdown 版本
+- **`markdown/resume.md`**：Markdown 格式的履歷文件，易於編輯和查看
+- **`markdown/Makefile`**：Markdown 自動化腳本，生成帶時間戳的版本
+- **`markdown/README.md`**：Markdown 版本的使用說明
+
+#### 專案文檔
+- **`README.md`**：完整的專案說明文件
 
 ## 🛠️ 系統需求
 
@@ -95,6 +108,21 @@ make watch
 make help
 ```
 **功能**：顯示所有可用的編譯選項
+
+## 📝 Markdown 版本
+
+### 基本使用
+```bash
+cd markdown
+make                    # 生成帶時間戳的 Markdown 文件
+make clean            # 清理生成的 Markdown 文件
+```
+
+### Markdown 特色
+- **輕量級**：純 Markdown 格式，易於編輯
+- **跨平台**：可在任何支援 Markdown 的平台上查看
+- **版本控制**：與 Git 完美整合
+- **協作友好**：支援多人協作編輯
 
 ## ✏️ 自訂履歷內容
 
