@@ -5,7 +5,9 @@
 ## 🌐 線上履歷
 
 - **GitHub Pages**: [https://120061203.github.io/cv/](https://120061203.github.io/cv/)
-- **最新 PDF**: [output/songlinchen_20260321.pdf](output/songlinchen_20260321.pdf)
+- **最新 PDF**: [output/songlinchen_20260321.pdf](output/songlinchen_20260321.pdf)（來源：`src/songlinchen_20260321.tex`）
+
+**注意**：`make pdf` 預設編譯的是 `src/resume.tex`（較舊、較長版型），與首頁／此連結使用的 `songlinchen_20260321` 不同；更新線上 PDF 請編譯 `songlinchen_20260321.tex` 並覆寫 `output/songlinchen_20260321.pdf`。
 
 ## 🎨 專案預覽
 
