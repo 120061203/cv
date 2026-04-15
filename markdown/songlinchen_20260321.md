@@ -1,7 +1,6 @@
 # Song-Lin Chen
 
-**Contact:** [ccssll120061203@gmail.com](mailto:ccssll120061203@gmail.com) · [0905-359-300](tel:+886-905-359-300) · Taichung, Taiwan  
-**Links:** [LinkedIn](https://www.linkedin.com/in/songlinchen/) · [GitHub](https://github.com/120061203)
+[ccssll120061203@gmail.com](mailto:ccssll120061203@gmail.com) · [0905-359-300](tel:+886-905-359-300) · Taichung, Taiwan · [LinkedIn](https://www.linkedin.com/in/songlinchen/) · [GitHub](https://github.com/120061203)
 
 ---
 
@@ -16,33 +15,42 @@
 
 ## Education
 
-**National Central University**, MS in Network Learning Technology (2023 – 2025)
+**National Central University**, MS in Network Learning Technology (2023 -- 2025)
 
-**National University of Kaohsiung**, BS in Computer Science and Information Engineering (2018 – 2022)
+
+**National University of Kaohsiung**, BS in Computer Science and Information Engineering (2018 -- 2022)
 
 ## Certifications
 
-**Language:** English TOEIC Score: 735
+**Language**: English TOEIC Score: 735
 
 ## Awards & Honors
 
-- **National Level:** Top 20, Taiwan Energy
-- **Intercollegiate Level:** Honorable Mention, 2022 Intelligent Automation Competition
-- **University Level:** 2nd Place, 9th Annual Student Creativity Competition
-- **Department Level:** Honorable Mention & Industry Award, Graduation Project Competition
+**National Level:** Top 20, Taiwan Energy 
+
+**Intercollegiate Level:** Honorable Mention, 2022 Intelligent Automation Competition 
+
+**University Level:** 2nd Place, 9th Annual Student Creativity Competition 
+
+**Department Level:** Honorable Mention & Industry Award, Graduation Project Competition
 
 ## Community Involvement
 
-- **GDSC Technical Advisor**, Google Developer Student Club
-- **Speaker**, Google Developer Festival Taipei: LLM Comparator with Google Vertex AI
-- **Streaming Team**, COSCUP Open Source Conference
-- **Recording Team**, SITCON Students' Information Technology Conference
+**GDSC Technical Advisor**, Google Developer Student Club 
+
+**Speaker**, Google Developer Festival Taipei: LLM Comparator with Google Vertex AI 
+
+**Streaming Team**, COSCUP Open Source Conference 
+
+**Recording Team**, SITCON Students' Information Technology Conference
 
 ## Experience
 
-- **Instructor, IoT Science Club**, Guoguang Laboratory School
-- **Instructor, IoT Maker Space**, National University of Kaohsiung
-- **Network Administrator**, National Central University MEQA Lab
+**Instructor, IoT Science Club**, Guoguang Laboratory School 
+
+**Instructor, IoT Maker Space**, National University of Kaohsiung 
+
+**Network Administrator**, National Central University MEQA Lab
 
 ## Projects
 

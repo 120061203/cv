@@ -12,7 +12,8 @@ TIMESTAMP = $(DATE)_$(TIME)
 # --- 目前主要履歷（GitHub Pages、output/songlinchen_20260321.pdf）---
 CV_STEM = songlinchen_20260321
 CV_TEX = src/$(CV_STEM).tex
-CV_MD_SRC = markdown/$(CV_STEM).md
+CV_MD = markdown/$(CV_STEM).md
+CV_TEX2MD = scripts/tex_to_md_songlinchen.py
 CV_PDF = output/$(CV_STEM).pdf
 CV_MD_STAMPED = markdown/$(CV_STEM)_$(TIMESTAMP).md
 
@@ -43,9 +44,14 @@ $(CV_PDF): $(CV_TEX)
 	@rm -f output/$(CV_STEM).aux output/$(CV_STEM).log output/$(CV_STEM).out
 	@echo "✅ PDF: $(CV_PDF)"
 
-$(CV_MD_STAMPED): $(CV_MD_SRC)
-	@echo "📝 產生 Markdown 時間戳版本..."
-	@cp $(CV_MD_SRC) $(CV_MD_STAMPED)
+# Markdown 由 .tex 轉換（與 PDF 同源）
+markdown/$(CV_STEM).md: $(CV_TEX) $(CV_TEX2MD)
+	@echo "📝 由 LaTeX 產生 $(CV_MD)..."
+	@python3 $(CV_TEX2MD) $(CV_TEX) $(CV_MD)
+
+$(CV_MD_STAMPED): markdown/$(CV_STEM).md
+	@echo "📝 產生 Markdown 時間戳快照..."
+	@cp $(CV_MD) $(CV_MD_STAMPED)
 	@echo "✅ $(CV_MD_STAMPED)"
 
 # 舊版：resume.tex → 帶時間戳的 PDF / MD
@@ -72,8 +78,9 @@ quick-pdf: $(CV_TEX)
 	@mkdir -p output
 	cd src && $(LATEX) $(LATEX_FLAGS) -output-directory=../output $(CV_STEM).tex
 
-quick-md: $(CV_MD_SRC)
-	@cp $(CV_MD_SRC) $(CV_MD_STAMPED)
+quick-md: $(CV_TEX) $(CV_TEX2MD)
+	@python3 $(CV_TEX2MD) $(CV_TEX) $(CV_MD)
+	@cp $(CV_MD) $(CV_MD_STAMPED)
 	@echo "✅ $(CV_MD_STAMPED)"
 
 quick: quick-pdf quick-md
@@ -101,7 +108,7 @@ help:
 	@echo "📋 主要命令（目前履歷 songlinchen_20260321）："
 	@echo "  make / make all  — PDF: output/songlinchen_20260321.pdf + Markdown 快照"
 	@echo "  make pdf         — 只編譯 PDF"
-	@echo "  make md          — 只從 markdown/songlinchen_20260321.md 複製時間戳版本"
+	@echo "  make md          — 由 .tex 產生 markdown/songlinchen_20260321.md 並複製時間戳版本"
 	@echo ""
 	@echo "舊版長履歷（resume.tex）："
 	@echo "  make resume      — 產出 songlinchen_resume_<時間戳>.pdf 與 .md"
@@ -111,11 +118,12 @@ help:
 check-deps:
 	@echo "🔍 檢查依賴..."
 	@command -v $(LATEX) >/dev/null 2>&1 || (echo "❌ 請安裝 LaTeX"; exit 1)
+	@command -v python3 >/dev/null 2>&1 || (echo "❌ 請安裝 Python 3"; exit 1)
 	@test -f "$(CV_TEX)" || (echo "❌ 缺少 $(CV_TEX)"; exit 1)
-	@test -f "$(CV_MD_SRC)" || (echo "❌ 缺少 $(CV_MD_SRC)"; exit 1)
+	@test -f "$(CV_TEX2MD)" || (echo "❌ 缺少 $(CV_TEX2MD)"; exit 1)
 	@echo "✅ OK"
 
 status:
-	@echo "📊 主履歷源檔: $(CV_TEX) / $(CV_MD_SRC)"
+	@echo "📊 主履歷 LaTeX: $(CV_TEX) → PDF + $(CV_MD)（make md 時由腳本產出）"
 	@echo "📄 固定 PDF:   $(CV_PDF) $(if $(wildcard $(CV_PDF)),✅,❌)"
 	@echo "📝 最新快照:   $$(ls -t markdown/songlinchen_20260321_*.md 2>/dev/null | head -1 || echo 無)"
