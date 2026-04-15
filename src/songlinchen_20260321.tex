@@ -1,96 +1,282 @@
 \documentclass[10pt, letterpaper]{article}
 
-% Packages
-\usepackage[ignoreheadfoot, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
-\usepackage{titlesec, tabularx, array, xcolor, enumitem, fontawesome5, hyperref, paracol, ifthen, needspace}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{lmodern}
-\usepackage{charter}
+% \usepackage{fontspec} 
+% \setmainfont{Roboto}
 
-% Formatting
-\raggedright
-\pagestyle{empty}
-\setcounter{secnumdepth}{0}
-\setlength{\parindent}{0pt}
-\setlength{\columnsep}{0.15cm}
-\pagenumbering{gobble}
+% Packages:
+\usepackage[
+    ignoreheadfoot, % set margins without considering header and footer
+    top=1 cm, % seperation between body and page edge from the top
+    bottom=1 cm, % seperation between body and page edge from the bottom
+    left=1 cm, % seperation between body and page edge from the left
+    right=1 cm, % seperation between body and page edge from the right
+    footskip=1.0 cm, % seperation between body and footer
+    % showframe % for debugging 
+]{geometry} % for adjusting page geometry
+\usepackage{titlesec} % for customizing section titles
+\usepackage{tabularx} % for making tables with fixed width columns
+\usepackage{array} % tabularx requires this
+\usepackage[dvipsnames]{xcolor} % for coloring text
+\definecolor{primaryColor}{RGB}{0, 79, 144} % define primary color
+\usepackage{enumitem} % for customizing lists
+\usepackage{fontawesome5} % for using icons
+\usepackage{amsmath} % for math
+\usepackage[
+    pdftitle={Song Lin Chen's CV},
+    pdfauthor={Song Lin Chen},
+    pdfcreator={LaTeX with RenderCV},
+    colorlinks=true,
+    urlcolor=primaryColor
+]{hyperref} % for links, metadata and bookmarks
+\usepackage[pscoord]{eso-pic} % for floating text on the page
+\usepackage{calc} % for calculating lengths
+\usepackage{bookmark} % for bookmarks
+\usepackage{lastpage} % for getting the total number of pages
+\usepackage{changepage} % for one column entries (adjustwidth environment)
+\usepackage{paracol} % for two and three column entries
+\usepackage{ifthen} % for conditional statements
+\usepackage{needspace} % for avoiding page brake right after the section title
+\usepackage{iftex} % check if engine is pdflatex, xetex or luatex
+
+% Ensure that generate pdf is machine readable/ATS parsable:
+\ifPDFTeX
+    \input{glyphtounicode}
+    \pdfgentounicode=1
+    % \usepackage[T1]{fontenc} % this breaks sb2nov
+    \usepackage[utf8]{inputenc}
+    \usepackage{lmodern}
+\fi
+
+
+
+% Some settings:
+\AtBeginEnvironment{adjustwidth}{\partopsep0pt} % remove space before adjustwidth environment
+\pagestyle{empty} % no header or footer
+\setcounter{secnumdepth}{0} % no section numbering
+\setlength{\parindent}{0pt} % no indentation
+\setlength{\topskip}{0pt} % no top skip
+\setlength{\columnsep}{0cm} % set column seperation
+\makeatletter
+\let\ps@customFooterStyle\ps@plain % Copy the plain style to customFooterStyle
+\makeatother
 
 \titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
 
-\newcommand{\AND}{\unskip \cleaders\copy\ANDbox\hskip\wd\ANDbox \ignorespaces}
-\newsavebox\ANDbox
-\sbox\ANDbox{$|$}
+\titlespacing{\section}{
+    % left space:
+    -1pt
+}{
+    % top space:
+    0.3 cm
+}{
+    % bottom space:
+    0.2 cm
+} % section title spacing
+
+\renewcommand\labelitemi{$\circ$} % custom bullet points
+\newenvironment{highlights}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=0.4 cm + 10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights
+
+\newenvironment{highlightsforbulletentries}{
+    \begin{itemize}[
+        topsep=0.10 cm,
+        parsep=0.10 cm,
+        partopsep=0pt,
+        itemsep=0pt,
+        leftmargin=10pt
+    ]
+}{
+    \end{itemize}
+} % new environment for highlights for bullet entries
+        
+
+\newenvironment{onecolentry}{
+    \begin{adjustwidth}{
+        0.2 cm + 0.00001 cm
+    }{
+        0.2 cm + 0.00001 cm
+    }
+}{
+    \end{adjustwidth}
+} % new environment for one column entries
+
+\newenvironment{twocolentry}[2][]{
+    \onecolentry
+    \def\secondColumn{#2}
+    \setcolumnwidth{\fill, 4.5 cm}
+    \begin{paracol}{2}
+}{
+    \switchcolumn \raggedleft \secondColumn
+    \end{paracol}
+    \endonecolentry
+} % new environment for two column entries
+
+\newenvironment{header}{
+    \setlength{\topsep}{0pt}\par\kern\topsep\centering\linespread{1.5}
+}{
+    \par\kern\topsep
+} % new environment for the header
+
+
+
+% save the original href command in a new command:
+\let\hrefWithoutArrow\href
+
+% new command for external links:
+\renewcommand{\href}[2]{\hrefWithoutArrow{#1}{\ifthenelse{\equal{#2}{}}{ }{#2 }\raisebox{.15ex}{\footnotesize \faExternalLink*}}}
+
 
 \begin{document}
+    \newcommand{\AND}{\unskip
+        \cleaders\copy\ANDbox\hskip\wd\ANDbox
+        \ignorespaces
+    }
+    \newsavebox\ANDbox
+    \sbox\ANDbox{}
 
-% Header
-\begin{center}
-    {\LARGE \textbf{Song-Lin Chen}}
+    \begin{header}
+        \textbf{\fontsize{24 pt}{24 pt}\selectfont Song Lin Chen}
 
-    \vspace{5pt}
-    \small
-    \href{mailto:ccssll120061203@gmail.com}{ccssll120061203@gmail.com} \AND
-    \href{tel:+886-905-359-300}{0905-359-300} \AND
-    Taichung, Taiwan \AND
-    \href{https://www.linkedin.com/in/songlinchen/}{LinkedIn} \AND
-    \href{https://github.com/120061203}{GitHub}
-\end{center}
+        
+        
+        
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://xsong.us}{\color{black}{\footnotesize\faGlobe}\hspace*{0.13cm}xsong.us}}%
+        \kern 0.25 cm%
+        
+        \mbox{{\color{black}\footnotesize\faMapMarker*}\hspace*{0.13cm}Taiwan}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{mailto:ccssll120061203@gmail.com}{\color{black}{\footnotesize\faEnvelope[regular]}\hspace*{0.13cm}ccssll120061203@gmail.com}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{tel:(+886) 905-359-300}{\color{black}{\footnotesize\faPhone*}\hspace*{0.13cm}(+886) 905-359-300}}%
+        \kern 0.25 cm%
+        \AND%
+        \kern 0.25 cm%
+        \mbox{\hrefWithoutArrow{https://www.linkedin.com/in/songlinchen/
+}{\color{black}{\footnotesize\faLinkedin}\hspace*{0.13cm}songlinchen}}%
+        \kern 0.25 cm%
+        
 
-% Technical Skills
-\section{Technical Skills}
-\begin{itemize}
-    \item IoT, MQTT, Node-RED Dashboard
-    \item Google Cloud Platform (GCP)
-    \item C, C++, Python
-    \item PHP, MySQL, SCSS, Django, Flask
-    \item Git, R Programming
-    \item 3D Printing, Laser Cutting
-\end{itemize}
+    \end{header}
 
-% Education
-\section{Education}
-\textbf{National Central University}, MS in Network Learning Technology (2023 -- 2025)
-\vspace{2pt}
+    \vspace{0.3 cm - 0.3 cm}
 
-\textbf{National University of Kaohsiung}, BS in Computer Science and Information Engineering (2018 -- 2022)
-
-% Certifications
-\section{Certifications}
-\textbf{Language}: English TOEIC Score: 735
-
-% Awards & Honors
-\section{Awards \& Honors}
-\textbf{National Level:} Top 20, Taiwan Energy \\ 
-\textbf{Intercollegiate Level:} Honorable Mention, 2022 Intelligent Automation Competition \\ 
-\textbf{University Level:} 2nd Place, 9th Annual Student Creativity Competition \\ 
-\textbf{Department Level:} Honorable Mention \& Industry Award, Graduation Project Competition
-
-% Community Involvement
-\section{Community Involvement}
-\textbf{GDSC Technical Advisor}, Google Developer Student Club \\ 
-\textbf{Speaker}, Google Developer Festival Taipei: LLM Comparator with Google Vertex AI \\ 
-\textbf{Streaming Team}, COSCUP Open Source Conference \\ 
-\textbf{Recording Team}, SITCON Students' Information Technology Conference
-
-% Experience
 \section{Experience}
-\textbf{Instructor, IoT Science Club}, Guoguang Laboratory School \\
-\textbf{Instructor, IoT Maker Space}, National University of Kaohsiung \\
-\textbf{Network Administrator}, National Central University MEQA Lab
 
-% Projects
-\section{Projects}
-\textbf{AirPocket - Portable Air Quality Monitoring}  
-Developed a compact air quality sensor integrating IoT and GIS. Uses MQTT and Bluetooth for real-time monitoring. Recognized with Honorable Mention and Sponsor Award.
+\begin{twocolentry}{\textit{Aug 2025 – Present}}
+\textbf{Security-Focused DevOps Engineer} \\
+\textit{Pacston Technologies, Inc. — IT Services \& Consulting}
+\end{twocolentry}
 
-\textbf{Solar Shutter System}  
-Created an IoT-based solar shutter that adjusts the angle in real-time. Finalist in the Taiwan Energy Competition and 2nd Place in the Creative Ideas category.
+\begin{onecolentry}
+\begin{highlights}
 
-\textbf{Smartwatch with Linebot Integration}  
-Designed an interactive smartwatch integrating Linebot and Django. Features include heart rate, altitude, and temperature monitoring. Won Honorable Mention in the Digital Networking Competition.
+\item Architected secure \textbf{CI/CD pipelines} using \textbf{Bitbucket Pipelines}, \textbf{Docker}, and \textbf{AWS ECR}, enforcing \textbf{immutable image strategy} and reducing manual deployment effort by 80\%.
 
-\textbf{GOGO Tea Ordering System}  
-Developed a web-based ordering system with a custom UI/UX. Utilized PHP, MySQL, and SCSS. Achieved top rank in department.
+\item Designed \textbf{AWS cloud infrastructure} (\textbf{IAM}, \textbf{VPC}, \textbf{ALB}, \textbf{ECS Fargate}, \textbf{App Runner}) with \textbf{least-privilege access control} and private subnet segmentation to enhance security posture.
+
+\item Implemented \textbf{Infrastructure as Code} using \textbf{Terraform} and \textbf{Ansible}, integrating automated provisioning into CI/CD workflows and reducing manual infrastructure setup by 75\%.
+
+\item Built \textbf{Python-based automation tooling} for \textbf{release governance}, \textbf{semantic version enforcement}, and PR-driven CHANGELOG generation, reducing release preparation time by 70\%.
+
+\item Developed \textbf{serverless monitoring system} using \textbf{AWS Lambda}, \textbf{DynamoDB}, \textbf{CloudWatch}, and \textbf{SES} for real-time alerting, reducing incident detection time by 50\%.
+
+\end{highlights}
+\end{onecolentry}
+    
+\section{Security Infrastructure \& AI Projects}
+
+\begin{twocolentry}{\textit{Feb 2026}}
+\textbf{Vault Secret Management System (Terraform)}
+\end{twocolentry}
+
+\begin{onecolentry}
+\begin{highlights}
+    \item Built secure infrastructure provisioning workflow using Terraform with encrypted Vault secrets, eliminating \texttt{.env} file sharing across 30-person team and 204 services.
+    \item Implemented AWS SSM no-key-based authentication, removing 30+ SSH key pairs from server access and reducing unauthorized access surface by 100\%.
+    \item Reduced configuration drift risk by enforcing infrastructure automation across 204 services, replacing ad-hoc manual provisioning with auditable, version-controlled workflows.
+\end{highlights}
+\end{onecolentry}
+
+\begin{twocolentry}{\textit{Dec 2025}}
+\textbf{Serverless Security Monitoring Platform (AWS)}
+\end{twocolentry}
+
+\begin{onecolentry}
+\begin{highlights}
+    \item Built serverless real-time monitoring system (AWS Lambda + DynamoDB) covering 200 services, enabling incident detection from \textbf{zero visibility} to fully automated alerting.
+    \item Implemented automated anomaly detection with AWS SES and SMS notifications, processing \textbf{\textasciitilde{}60 events/month} and triggering targeted alerts to reduce incident response time by 50\%.
+    \item Developed React dashboard to visualize operational metrics across 200 services, replacing manual log inspection with real-time system health visibility.
+\end{highlights}
+\end{onecolentry}
+
+\begin{twocolentry}{\textit{Oct 2025}}
+\textbf{Terraform-Based Infrastructure Platform (AWS)}
+\end{twocolentry}
+
+\begin{onecolentry}
+\begin{highlights}
+    \item Designed modular Terraform architecture provisioning 30 production workloads (20 App Runner, 6 Fargate, 4 Lambda) across VPC, IAM, ECS, and networking resources, reducing manual provisioning effort by 75\%.
+\item Implemented least-privilege IAM policies and secure private subnet architecture, eliminating manual access configuration across all 30 services.
+\item Integrated Terraform execution into CI/CD workflow, achieving 100\% reproducible infrastructure provisioning and eliminating human error risk.
+\end{highlights}
+\end{onecolentry}
+\begin{twocolentry}{\textit{Sep 2025}}
+\textbf{AISecMap – AI-Powered Security Analysis Platform}
+\end{twocolentry}
+
+\begin{onecolentry}
+\begin{highlights}
+\item Architected an AI-driven \textbf{security automation platform} integrating \textbf{RAG}(Ollama), \textbf{static analysis} (Semgrep, Bandit), and \textbf{container scanning} .
+\item Built backend services in \textbf{Go} with \textbf{Postgres} and \textbf{Milvus} for vector retrieval and structured threat analysis.
+\item Implemented automated vulnerability detection and \textbf{attack path visualization} using React.
+
+\end{highlights}
+\end{onecolentry}
+
+
+    \section{Education}
+
+\begin{twocolentry}{\textit{2023 – 2025}}
+\textbf{National Central University} \\
+\textit{M.S. in Network Learning Technology}
+\end{twocolentry}
+
+\begin{onecolentry}
+\begin{highlights}
+    \item Participated in \textbf{4 national-level competitions}, including AWS Hackathon and Google Solution Challenge.
+    \item Delivered production-style cloud and AI solutions in competitive engineering environments.
+\end{highlights}
+\end{onecolentry}
+
+\vspace{0.2 cm}
+
+\begin{twocolentry}{\textit{2018 – 2022}}
+\textbf{National University of Kaohsiung} \\
+\textit{B.S. in Computer Science}
+\end{twocolentry}
+
+\begin{onecolentry}
+\begin{highlights}
+    \item Awarded \textbf{5 technical competition prizes} across software and IoT engineering projects.
+    \item Recognized for excellence in system design and full-stack implementation.
+\end{highlights}
+\end{onecolentry}
+
+
+
 
 \end{document}
