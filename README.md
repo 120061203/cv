@@ -7,7 +7,7 @@
 - **GitHub Pages**: [https://120061203.github.io/cv/](https://120061203.github.io/cv/)
 - **最新 PDF**: [output/songlinchen_20260321.pdf](output/songlinchen_20260321.pdf)（來源：`src/songlinchen_20260321.tex`）
 
-**注意**：`make pdf` 預設編譯的是 `src/resume.tex`（較舊、較長版型），與首頁／此連結使用的 `songlinchen_20260321` 不同；更新線上 PDF 請編譯 `songlinchen_20260321.tex` 並覆寫 `output/songlinchen_20260321.pdf`。
+**產生 PDF 與 Markdown**：在專案根目錄執行 `make`（或 `make pdf` / `make md`）。預設會編譯 **`songlinchen_20260321`**：輸出固定檔名 `output/songlinchen_20260321.pdf`，並從 `markdown/songlinchen_20260321.md` 複製一份帶時間戳的 `markdown/songlinchen_20260321_YYYYMMDD_HHMMSS.md`。若需舊的長版 **`resume.tex`**，請使用 `make resume`。
 
 ## 🎨 專案預覽
 
@@ -93,15 +93,16 @@ cv/
 
 ### 🎯 統一編譯（推薦）
 ```bash
-make                # 同時生成 PDF 和 Markdown 履歷
-make pdf           # 只生成 PDF 履歷
-make md            # 只生成 Markdown 履歷
+make                # songlinchen_20260321：PDF + Markdown 時間戳快照
+make pdf           # 只生成 output/songlinchen_20260321.pdf
+make md            # 只從 markdown/songlinchen_20260321.md 產生時間戳 .md
+make resume        # 舊版長履歷 resume.tex（帶時間戳檔名）
 ```
-**功能**：一個命令同時生成兩種格式的履歷
+**功能**：預設履歷為 `songlinchen_20260321`；`make resume` 仍產出舊的 `songlinchen_resume_*.pdf`。
 **輸出**：
-- PDF：`output/songlinchen_resume_YYYYMMDD_HHMMSS.pdf`
-- Markdown：`markdown/songlinchen_resume_YYYYMMDD_HHMMSS.md`
-**特點**：自動清理輔助文件，保持目錄整潔
+- PDF：`output/songlinchen_20260321.pdf`（固定檔名，供網頁連結）
+- Markdown 快照：`markdown/songlinchen_20260321_YYYYMMDD_HHMMSS.md`（僅本機備份，已列入 `.gitignore`；請提交 `markdown/songlinchen_20260321.md`）
+**特點**：編譯後清理 LaTeX 輔助檔
 
 ### ⚡ 快速編譯
 ```bash

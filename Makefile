@@ -1,153 +1,121 @@
 # 統一履歷編譯 Makefile
-# 支援 LaTeX PDF 和 Markdown 版本同時生成
+# 預設：目前線上／PDF 使用的 songlinchen_20260321（LaTeX + Markdown 快照）
+# 舊版長履歷：make resume
 
-# 主要目標文件
-TARGET = resume
 LATEX = pdflatex
 LATEX_FLAGS = -interaction=nonstopmode
 
-# 時間戳記設定
 DATE = $(shell date +%Y%m%d)
 TIME = $(shell date +%H%M%S)
 TIMESTAMP = $(DATE)_$(TIME)
 
-# 文件路徑
-TEX_FILE = src/$(TARGET).tex
-MD_FILE = markdown/$(TARGET).md
-PDF_FILE = output/songlinchen_$(TARGET)_$(TIMESTAMP).pdf
-OUTPUT_MD_FILE = markdown/songlinchen_$(TARGET)_$(TIMESTAMP).md
+# --- 目前主要履歷（GitHub Pages、output/songlinchen_20260321.pdf）---
+CV_STEM = songlinchen_20260321
+CV_TEX = src/$(CV_STEM).tex
+CV_MD_SRC = markdown/$(CV_STEM).md
+CV_PDF = output/$(CV_STEM).pdf
+CV_MD_STAMPED = markdown/$(CV_STEM)_$(TIMESTAMP).md
 
-# 預設目標：同時生成 PDF 和 Markdown
+# --- 舊版 resume.tex 長履歷 ---
+RESUME_STEM = resume
+RESUME_TEX = src/$(RESUME_STEM).tex
+RESUME_MD_SRC = markdown/$(RESUME_STEM).md
+RESUME_PDF_STAMPED = output/songlinchen_$(RESUME_STEM)_$(TIMESTAMP).pdf
+RESUME_MD_STAMPED = markdown/songlinchen_$(RESUME_STEM)_$(TIMESTAMP).md
+
+.PHONY: all pdf md clean distclean watch help check-deps status resume resume-pdf resume-md
+
+# 預設：產出固定檔名 PDF + 帶時間戳的 Markdown 快照
 all: pdf md
 	@echo "🎉 履歷編譯完成！"
-	@echo "📄 PDF: $(PDF_FILE)"
-	@echo "📝 Markdown: $(OUTPUT_MD_FILE)"
+	@echo "📄 PDF（線上連結用）: $(CV_PDF)"
+	@echo "📝 Markdown 快照: $(CV_MD_STAMPED)"
 
-# 只生成 PDF
-pdf: $(PDF_FILE)
-	@echo "✅ PDF 履歷生成完成：$(PDF_FILE)"
+pdf: $(CV_PDF)
 
-# 只生成 Markdown
-md: $(OUTPUT_MD_FILE)
-	@echo "✅ Markdown 履歷生成完成：$(OUTPUT_MD_FILE)"
+md: $(CV_MD_STAMPED)
 
-# PDF 編譯規則
-$(PDF_FILE): $(TEX_FILE)
-	@echo "📄 編譯 LaTeX 履歷..."
+$(CV_PDF): $(CV_TEX)
+	@echo "📄 編譯 LaTeX（$(CV_STEM)）..."
 	@mkdir -p output
-	cd src && $(LATEX) $(LATEX_FLAGS) -jobname=songlinchen_$(TARGET)_$(TIMESTAMP) -output-directory=../output $(TARGET).tex
-	cd src && $(LATEX) $(LATEX_FLAGS) -jobname=songlinchen_$(TARGET)_$(TIMESTAMP) -output-directory=../output $(TARGET).tex  # 執行兩次以確保交叉引用正確
-	@echo "🧹 清理輔助文件..."
-	@rm -f output/*.aux output/*.log output/*.out output/*.toc output/*.synctex.gz
-	@echo "✅ PDF 編譯完成：$(PDF_FILE)"
+	cd src && $(LATEX) $(LATEX_FLAGS) -output-directory=../output $(CV_STEM).tex
+	cd src && $(LATEX) $(LATEX_FLAGS) -output-directory=../output $(CV_STEM).tex
+	@rm -f output/$(CV_STEM).aux output/$(CV_STEM).log output/$(CV_STEM).out
+	@echo "✅ PDF: $(CV_PDF)"
 
-# Markdown 生成規則
-$(OUTPUT_MD_FILE): $(MD_FILE)
-	@echo "📝 生成 Markdown 履歷..."
-	@cp $(MD_FILE) $(OUTPUT_MD_FILE)
-	@echo "✅ Markdown 生成完成：$(OUTPUT_MD_FILE)"
+$(CV_MD_STAMPED): $(CV_MD_SRC)
+	@echo "📝 產生 Markdown 時間戳版本..."
+	@cp $(CV_MD_SRC) $(CV_MD_STAMPED)
+	@echo "✅ $(CV_MD_STAMPED)"
 
-# 快速編譯（不清理輔助文件）
+# 舊版：resume.tex → 帶時間戳的 PDF / MD
+resume: resume-pdf resume-md
+	@echo "🎉 長版履歷（resume）編譯完成！"
+	@echo "📄 PDF: $(RESUME_PDF_STAMPED)"
+	@echo "📝 Markdown: $(RESUME_MD_STAMPED)"
+
+resume-pdf: $(RESUME_TEX)
+	@echo "📄 編譯 LaTeX（$(RESUME_STEM)）..."
+	@mkdir -p output
+	cd src && $(LATEX) $(LATEX_FLAGS) -jobname=songlinchen_$(RESUME_STEM)_$(TIMESTAMP) -output-directory=../output $(RESUME_STEM).tex
+	cd src && $(LATEX) $(LATEX_FLAGS) -jobname=songlinchen_$(RESUME_STEM)_$(TIMESTAMP) -output-directory=../output $(RESUME_STEM).tex
+	@rm -f output/songlinchen_$(RESUME_STEM)_$(TIMESTAMP).aux output/songlinchen_$(RESUME_STEM)_$(TIMESTAMP).log output/songlinchen_$(RESUME_STEM)_$(TIMESTAMP).out
+	@echo "✅ PDF: $(RESUME_PDF_STAMPED)"
+
+resume-md: $(RESUME_MD_SRC)
+	@echo "📝 產生 Markdown 時間戳版本..."
+	@cp $(RESUME_MD_SRC) $(RESUME_MD_STAMPED)
+	@echo "✅ $(RESUME_MD_STAMPED)"
+
+# 快速（不清理 .log 等，除錯用）
+quick-pdf: $(CV_TEX)
+	@mkdir -p output
+	cd src && $(LATEX) $(LATEX_FLAGS) -output-directory=../output $(CV_STEM).tex
+
+quick-md: $(CV_MD_SRC)
+	@cp $(CV_MD_SRC) $(CV_MD_STAMPED)
+	@echo "✅ $(CV_MD_STAMPED)"
+
 quick: quick-pdf quick-md
-	@echo "⚡ 快速編譯完成！"
 
-quick-pdf: $(TEX_FILE)
-	@echo "⚡ 快速編譯 PDF..."
-	@mkdir -p output
-	cd src && $(LATEX) $(LATEX_FLAGS) -jobname=songlinchen_$(TARGET)_$(TIMESTAMP) -output-directory=../output $(TARGET).tex
-	@echo "✅ 快速 PDF 編譯完成"
-
-quick-md: $(MD_FILE)
-	@echo "⚡ 快速生成 Markdown..."
-	@cp $(MD_FILE) $(OUTPUT_MD_FILE)
-	@echo "✅ 快速 Markdown 生成完成"
-
-# 清理功能
 clean:
 	@echo "🧹 清理輔助文件..."
 	@rm -f src/*.aux src/*.log src/*.out src/*.toc src/*.synctex.gz src/*.fdb_latexmk src/*.fls
 	@rm -f output/*.aux output/*.log output/*.out output/*.toc output/*.synctex.gz
-	@echo "🎉 輔助文件清理完成！"
+	@echo "🎉 完成"
 
-# 完全清理（包括所有生成的文件）
 distclean: clean
-	@echo "🗑️  完全清理..."
-	@rm -f output/songlinchen_$(TARGET)_*.pdf
-	@rm -f markdown/songlinchen_$(TARGET)_*.md
-	@echo "🎉 完全清理完成！"
+	@echo "🗑️  移除時間戳 Markdown 快照（songlinchen_20260321_*.md）..."
+	@rm -f markdown/songlinchen_20260321_*.md
+	@echo "（保留 output/$(CV_STEM).pdf 與 markdown/$(CV_STEM).md 主檔）"
 
-# 監視模式（需要 latexmk）
 watch:
-	@echo "👀 啟動監視模式..."
-	@echo "監視文件：$(TEX_FILE)"
-	@echo "按 Ctrl+C 停止監視"
+	@echo "👀 監視：$(CV_TEX)"
 	@if command -v latexmk >/dev/null 2>&1; then \
-		cd src && latexmk -pdf -pvc -jobname=songlinchen_$(TARGET)_$(TIMESTAMP) -output-directory=../output $(TARGET).tex; \
+		cd src && latexmk -pdf -pvc -output-directory=../output $(CV_STEM).tex; \
 	else \
-		echo "❌ 錯誤：未找到 latexmk，請安裝後重試"; \
-		exit 1; \
+		echo "❌ 請安裝 latexmk"; exit 1; \
 	fi
 
-# 顯示幫助
 help:
-	@echo "📋 可用的編譯命令："
+	@echo "📋 主要命令（目前履歷 songlinchen_20260321）："
+	@echo "  make / make all  — PDF: output/songlinchen_20260321.pdf + Markdown 快照"
+	@echo "  make pdf         — 只編譯 PDF"
+	@echo "  make md          — 只從 markdown/songlinchen_20260321.md 複製時間戳版本"
 	@echo ""
-	@echo "🎯 主要命令："
-	@echo "  make        - 同時生成 PDF 和 Markdown 履歷"
-	@echo "  make pdf    - 只生成 PDF 履歷"
-	@echo "  make md     - 只生成 Markdown 履歷"
+	@echo "舊版長履歷（resume.tex）："
+	@echo "  make resume      — 產出 songlinchen_resume_<時間戳>.pdf 與 .md"
 	@echo ""
-	@echo "⚡ 快速命令："
-	@echo "  make quick     - 快速編譯（不清理輔助文件）"
-	@echo "  make quick-pdf - 快速編譯 PDF"
-	@echo "  make quick-md  - 快速生成 Markdown"
-	@echo ""
-	@echo "🧹 清理命令："
-	@echo "  make clean     - 清理輔助文件"
-	@echo "  make distclean - 完全清理（包括所有生成的文件）"
-	@echo ""
-	@echo "👀 監視命令："
-	@echo "  make watch     - 監視文件變化並自動重新編譯"
-	@echo ""
-	@echo "📖 幫助命令："
-	@echo "  make help      - 顯示此幫助信息"
-	@echo ""
-	@echo "📁 文件結構："
-	@echo "  src/$(TARGET).tex           - LaTeX 源文件"
-	@echo "  markdown/$(TARGET).md       - Markdown 源文件"
-	@echo "  output/songlinchen_*.pdf    - 生成的 PDF 文件"
-	@echo "  markdown/songlinchen_*.md   - 生成的 Markdown 文件"
+	@echo "  make clean / make distclean / make watch / make status"
 
-# 檢查依賴
 check-deps:
-	@echo "🔍 檢查編譯依賴..."
-	@if ! command -v $(LATEX) >/dev/null 2>&1; then \
-		echo "❌ 錯誤：未找到 $(LATEX)，請安裝 LaTeX 發行版"; \
-		exit 1; \
-	fi
-	@if [ ! -f "$(TEX_FILE)" ]; then \
-		echo "❌ 錯誤：未找到 LaTeX 源文件：$(TEX_FILE)"; \
-		exit 1; \
-	fi
-	@if [ ! -f "$(MD_FILE)" ]; then \
-		echo "❌ 錯誤：未找到 Markdown 源文件：$(MD_FILE)"; \
-		exit 1; \
-	fi
-	@echo "✅ 所有依賴檢查通過！"
+	@echo "🔍 檢查依賴..."
+	@command -v $(LATEX) >/dev/null 2>&1 || (echo "❌ 請安裝 LaTeX"; exit 1)
+	@test -f "$(CV_TEX)" || (echo "❌ 缺少 $(CV_TEX)"; exit 1)
+	@test -f "$(CV_MD_SRC)" || (echo "❌ 缺少 $(CV_MD_SRC)"; exit 1)
+	@echo "✅ OK"
 
-# 顯示專案狀態
 status:
-	@echo "📊 專案狀態："
-	@echo "📁 源文件："
-	@echo "  LaTeX:   $(TEX_FILE) $(if $(wildcard $(TEX_FILE)),✅,❌)"
-	@echo "  Markdown: $(MD_FILE) $(if $(wildcard $(MD_FILE)),✅,❌)"
-	@echo ""
-	@echo "📄 最新輸出："
-	@echo "  PDF: $(shell ls -t output/songlinchen_*.pdf 2>/dev/null | head -1 || echo '無')"
-	@echo "  Markdown: $(shell ls -t markdown/songlinchen_*.md 2>/dev/null | head -1 || echo '無')"
-	@echo ""
-	@echo "📈 統計："
-	@echo "  PDF 文件數量: $(shell ls output/songlinchen_*.pdf 2>/dev/null | wc -l || echo 0)"
-	@echo "  Markdown 文件數量: $(shell ls markdown/songlinchen_*.md 2>/dev/null | wc -l || echo 0)"
-
-.PHONY: all pdf md quick quick-pdf quick-md clean distclean watch help check-deps status
+	@echo "📊 主履歷源檔: $(CV_TEX) / $(CV_MD_SRC)"
+	@echo "📄 固定 PDF:   $(CV_PDF) $(if $(wildcard $(CV_PDF)),✅,❌)"
+	@echo "📝 最新快照:   $$(ls -t markdown/songlinchen_20260321_*.md 2>/dev/null | head -1 || echo 無)"
