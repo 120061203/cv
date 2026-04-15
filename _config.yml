@@ -5,5 +5,22 @@ baseurl: "/cv"
 url: "https://120061203.github.io"
 markdown: kramdown
 theme: minima
+
+# Minima：未設定時會用「全部 site.pages」當導航，容易出現多個同名連結
+# Minima 2.x
+header_pages: []
+# Minima 3.x
 minima:
   skin: classic
+  nav_pages: []
+
+# 不要讓 Jekyll 把履歷草稿／說明當成獨立頁面（減少多餘 nav）
+exclude:
+  - README.md
+  - markdown
+  - scripts
+  - src
+  - Makefile
+  - Makefile.backup
+  - projects
+  - ".gitignore"
