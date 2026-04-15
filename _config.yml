@@ -1,0 +1,9 @@
+# GitHub Pages (project site: username.github.io/cv/)
+title: Song Lin Chen
+description: CV / Resume
+baseurl: "/cv"
+url: "https://120061203.github.io"
+markdown: kramdown
+theme: minima
+minima:
+  skin: classic

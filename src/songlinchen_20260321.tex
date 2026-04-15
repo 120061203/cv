@@ -1,0 +1,96 @@
+\documentclass[10pt, letterpaper]{article}
+
+% Packages
+\usepackage[ignoreheadfoot, top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry}
+\usepackage{titlesec, tabularx, array, xcolor, enumitem, fontawesome5, hyperref, paracol, ifthen, needspace}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{charter}
+
+% Formatting
+\raggedright
+\pagestyle{empty}
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{0.15cm}
+\pagenumbering{gobble}
+
+\titleformat{\section}{\needspace{4\baselineskip}\bfseries\large}{}{0pt}{}[\vspace{1pt}\titlerule]
+
+\newcommand{\AND}{\unskip \cleaders\copy\ANDbox\hskip\wd\ANDbox \ignorespaces}
+\newsavebox\ANDbox
+\sbox\ANDbox{$|$}
+
+\begin{document}
+
+% Header
+\begin{center}
+    {\LARGE \textbf{Song-Lin Chen}}
+
+    \vspace{5pt}
+    \small
+    \href{mailto:ccssll120061203@gmail.com}{ccssll120061203@gmail.com} \AND
+    \href{tel:+886-905-359-300}{0905-359-300} \AND
+    Taichung, Taiwan \AND
+    \href{https://www.linkedin.com/in/songlinchen/}{LinkedIn} \AND
+    \href{https://github.com/120061203}{GitHub}
+\end{center}
+
+% Technical Skills
+\section{Technical Skills}
+\begin{itemize}
+    \item IoT, MQTT, Node-RED Dashboard
+    \item Google Cloud Platform (GCP)
+    \item C, C++, Python
+    \item PHP, MySQL, SCSS, Django, Flask
+    \item Git, R Programming
+    \item 3D Printing, Laser Cutting
+\end{itemize}
+
+% Education
+\section{Education}
+\textbf{National Central University}, MS in Network Learning Technology (2023 -- 2025)
+\vspace{2pt}
+
+\textbf{National University of Kaohsiung}, BS in Computer Science and Information Engineering (2018 -- 2022)
+
+% Certifications
+\section{Certifications}
+\textbf{Language}: English TOEIC Score: 735
+
+% Awards & Honors
+\section{Awards \& Honors}
+\textbf{National Level:} Top 20, Taiwan Energy \\ 
+\textbf{Intercollegiate Level:} Honorable Mention, 2022 Intelligent Automation Competition \\ 
+\textbf{University Level:} 2nd Place, 9th Annual Student Creativity Competition \\ 
+\textbf{Department Level:} Honorable Mention \& Industry Award, Graduation Project Competition
+
+% Community Involvement
+\section{Community Involvement}
+\textbf{GDSC Technical Advisor}, Google Developer Student Club \\ 
+\textbf{Speaker}, Google Developer Festival Taipei: LLM Comparator with Google Vertex AI \\ 
+\textbf{Streaming Team}, COSCUP Open Source Conference \\ 
+\textbf{Recording Team}, SITCON Students' Information Technology Conference
+
+% Experience
+\section{Experience}
+\textbf{Instructor, IoT Science Club}, Guoguang Laboratory School \\
+\textbf{Instructor, IoT Maker Space}, National University of Kaohsiung \\
+\textbf{Network Administrator}, National Central University MEQA Lab
+
+% Projects
+\section{Projects}
+\textbf{AirPocket - Portable Air Quality Monitoring}  
+Developed a compact air quality sensor integrating IoT and GIS. Uses MQTT and Bluetooth for real-time monitoring. Recognized with Honorable Mention and Sponsor Award.
+
+\textbf{Solar Shutter System}  
+Created an IoT-based solar shutter that adjusts the angle in real-time. Finalist in the Taiwan Energy Competition and 2nd Place in the Creative Ideas category.
+
+\textbf{Smartwatch with Linebot Integration}  
+Designed an interactive smartwatch integrating Linebot and Django. Features include heart rate, altitude, and temperature monitoring. Won Honorable Mention in the Digital Networking Competition.
+
+\textbf{GOGO Tea Ordering System}  
+Developed a web-based ordering system with a custom UI/UX. Utilized PHP, MySQL, and SCSS. Achieved top rank in department.
+
+\end{document}

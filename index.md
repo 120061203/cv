@@ -1,3 +1,8 @@
+---
+layout: default
+title: Song Lin Chen
+---
+
 # Song Lin Chen
 
 **Network Learning Technology Graduate Student**  
@@ -5,6 +10,7 @@
 📧 ccssll120061203@gmail.com  
 📱 (+886) 905-359-300  
 🔗 [LinkedIn](https://www.linkedin.com/in/songlinchen/)  
+📄 **[Download PDF resume]({{ '/output/songlinchen_20260321.pdf' | relative_url }})** (LaTeX, updated Mar 2026)
 
 ---
 
@@ -67,4 +73,4 @@
 
 ---
 
-*Last updated: October 1, 2025*
+*Last updated: April 15, 2026*
