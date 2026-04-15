@@ -14,6 +14,8 @@ CV_STEM = songlinchen_20260321
 CV_TEX = src/$(CV_STEM).tex
 CV_MD = markdown/$(CV_STEM).md
 CV_TEX2MD = scripts/tex_to_md_songlinchen.py
+SYNC_INDEX = scripts/sync_index_md.py
+INDEX_MD = index.md
 CV_PDF = output/$(CV_STEM).pdf
 CV_MD_STAMPED = markdown/$(CV_STEM)_$(TIMESTAMP).md
 
@@ -44,10 +46,12 @@ $(CV_PDF): $(CV_TEX)
 	@rm -f output/$(CV_STEM).aux output/$(CV_STEM).log output/$(CV_STEM).out
 	@echo "✅ PDF: $(CV_PDF)"
 
-# Markdown 由 .tex 轉換（與 PDF 同源）
-markdown/$(CV_STEM).md: $(CV_TEX) $(CV_TEX2MD)
+# Markdown 由 .tex 轉換（與 PDF 同源）；同步 GitHub Pages 首頁 index.md
+markdown/$(CV_STEM).md: $(CV_TEX) $(CV_TEX2MD) $(SYNC_INDEX)
 	@echo "📝 由 LaTeX 產生 $(CV_MD)..."
 	@python3 $(CV_TEX2MD) $(CV_TEX) $(CV_MD)
+	@echo "📝 同步 $(INDEX_MD)（與 $(CV_MD) 一致）..."
+	@python3 $(SYNC_INDEX) $(CV_MD) $(INDEX_MD)
 
 $(CV_MD_STAMPED): markdown/$(CV_STEM).md
 	@echo "📝 產生 Markdown 時間戳快照..."
@@ -78,8 +82,9 @@ quick-pdf: $(CV_TEX)
 	@mkdir -p output
 	cd src && $(LATEX) $(LATEX_FLAGS) -output-directory=../output $(CV_STEM).tex
 
-quick-md: $(CV_TEX) $(CV_TEX2MD)
+quick-md: $(CV_TEX) $(CV_TEX2MD) $(SYNC_INDEX)
 	@python3 $(CV_TEX2MD) $(CV_TEX) $(CV_MD)
+	@python3 $(SYNC_INDEX) $(CV_MD) $(INDEX_MD)
 	@cp $(CV_MD) $(CV_MD_STAMPED)
 	@echo "✅ $(CV_MD_STAMPED)"
 
